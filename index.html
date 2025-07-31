@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreativeDavie's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Container for overall content width */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header and Navigation Styles */
+        header {
+            background-color: #1a1a1a;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #e60000;
+            font-size: 2em;
+            font-weight: 700;
+            margin-left: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 30px;
+        }
+
+        nav ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #e60000;
+        }
+
+        /* Hero Section (Main Content) Styles */
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+            gap: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #e60000;
+            box-shadow: 0 0 30px rgba(230, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            flex: 2;
+            min-width: 400px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .hero-content h1 span {
+            color: #e60000;
+        }
+
+        .hero-content p.tagline {
+            font-size: 1.8em;
+            color: #f0f0f0;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p.description {
+            font-size: 1.1em;
+            color: #cccccc;
+            margin-bottom: 30px;
+        }
+
+        /* Social Icons Styles */
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e60000;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: #e60000;
+            color: #ffffff;
+            transform: translateY(-5px);
+        }
+
+        /* Button Styles */
+        .btn {
+            background-color: transparent;
+            color: #e60000;
+            border: 2px solid #e60000;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e60000;
+            color: #ffffff;
+        }
+
+        /* Basic Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #aaa;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+        }
+
+        /* New CSS for Sections */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-padding h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #ffffff;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-padding h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #e60000;
+            border-radius: 5px;
+        }
+
+        /* Service Grid Styles (reused for Skills, Education, Experience Grids) */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-item {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .service-item h3 {
+            color: #e60000;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .service-item p {
+            color: #cccccc;
+            font-size: 1em;
+        }
+
+        /* Skills Grid Styles (similar to service-grid but can be adapted) */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-item {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            text-align: left; /* Align text to left inside skill item */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .skill-item h3 {
+            color: #e60000;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center; /* Center the skill category heading */
+        }
+
+        .skill-item ul {
+            list-style-type: none; /* Remove default list bullets */
+            padding: 0;
+            margin: 0;
+        }
+
+        .skill-item ul li {
+            color: #cccccc;
+            font-size: 1em;
+            padding: 5px 0;
+            border-bottom: 1px dotted #333; /* Subtle divider for list items */
+        }
+
+        .skill-item ul li:last-child {
+            border-bottom: none; /* No border for the last item */
+        }
+
+        /* Contact Form Specific Styles */
+        .contact-content {
+            background-color: #1a1a1a;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center; /* Center the text above the form */
+        }
+
+        .contact-content p {
+            margin-bottom: 20px;
+            color: #cccccc;
+        }
+
+        .contact-email-link {
+            color: #e60000;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-email-link:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+            text-align: left; /* Align form labels to the left */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #f0f0f0;
+            font-weight: 600;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: calc(100% - 20px); /* Account for padding */
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus {
+            border-color: #e60000;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(230, 0, 0, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 120px;
+        }
+
+        .contact-form .btn {
+            align-self: flex-start; /* Align button to the left if form is left-aligned */
+            width: auto; /* Ensure button isn't full width */
+            padding: 12px 40px; /* Adjust padding for better look */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                padding: 40px 0;
+            }
+
+            .hero-image, .hero-content {
+                min-width: unset;
+                width: 100%;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .logo {
+                font-size: 1.5em;
+                margin-left: 10px;
+            }
+
+            nav ul li {
+                margin-right: 15px;
+            }
+
+            .section-padding {
+                padding: 40px 0;
+            }
+
+            .section-padding h2 {
+                font-size: 2em;
+            }
+
+            .contact-content {
+                padding: 20px;
+            }
+
+            .form-group input[type="text"],
+            .form-group input[type="email"],
+            .form-group textarea {
+                width: calc(100% - 20px); /* Maintain padding on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">CreativeDavie</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-image">
+                <img src="myphoto.jpg" alt="David's Portrait">
+            </div>
+            <div class="hero-content">
+                <h1>Hi, It's <span>CreativeDavie</span></h1>
+                <p class="tagline">I am a Graphic Designer</p>
+                <p class="description">David Antony is a passionate and skilled graphic designer with a creative eye for detail and a strong sense of visual storytelling. With experience in branding, logo creation, digital design, and layout composition, he brings ideas to life through thoughtful and compelling visuals. David thrives on transforming concepts into clean, modern, and engaging designs that resonate with audiences. His ability to blend creativity with functionality makes him a reliable designer for businesses looking to stand out. Whether it's for social media, print, or digital platforms, David approaches every project with originality, precision, and a deep understanding of design principles.</p>
+                
+                <div class="social-icons">
+                    <a href="https://instagram.com/creativedavie" target="_blank">I</a>
+                    <a href="mailto:creativedaviee@gmail.com" target="_blank">G</a>
+                </div>
+                
+                <a href="#contact" class="btn">Hire me</a>
+            </div>
+        </section>
+
+        <section id="services" class="section-padding">
+            <h2>My Services</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>Logo Design & Branding</h3>
+                    <p>Crafting unique and memorable logos that capture your brand's essence and comprehensive branding guidelines for consistent visual identity across all platforms.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Web Graphics & UI Design</h3>
+                    <p>Designing engaging visuals for websites, social media, and digital campaigns. Creating intuitive user interfaces (UI) that enhance user experience and engagement.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Print & Publication Design</h3>
+                    <p>Developing high-quality designs for brochures, flyers, posters, business cards, and other print materials that make a lasting impression.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Illustration & Iconography</h3>
+                    <p>Creating custom illustrations and unique icon sets that add a distinctive and professional touch to your projects and brand assets.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section-padding">
+            <h2>My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h3>Design Software</h3>
+                    <ul>
+                        <li>Adobe Photoshop</li>
+                        <li>Adobe Illustrator</li>
+                        <li>Adobe InDesign</li>
+                        <li>Figma</li>
+                        <li>Procreate (for iPad)</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Core Design Principles</h3>
+                    <ul>
+                        <li>Typography & Layout</li>
+                        <li>Color Theory</li>
+                        <li>Composition</li>
+                        <li>Visual Hierarchy</li>
+                        <li>Branding & Identity</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Digital & Web Design</h3>
+                    <ul>
+                        <li>UI/UX Basics</li>
+                        <li>Web Graphics Optimization</li>
+                        <li>HTML & CSS (for web design)</li>
+                        <li>Responsive Design</li>
+                        <li>Digital Asset Creation</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Other Creative Skills</h3>
+                    <ul>
+                        <li>Concept Development</li>
+                        <li>Storyboarding</li>
+                        <li>Photography Basics</li>
+                        <li>Video Editing (Basic)</li>
+                        <li>Client Communication</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section-padding">
+            <h2>My Education</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>Form IV (Multimedia Studies)</h3>
+                    <p>IAA, Current Student</p>
+                </div>
+                <div class="service-item">
+                    <h3>Advanced Web Design Course</h3>
+                    <p>Online Learning Platform, 2023</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section-padding">
+            <h2>My Experience</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>Graphic Designer</h3>
+                    <p>2 Years of Professional Experience</p>
+                    <p>Worked with various companies and organizations, including the **Institute of Accountants Arusha (IAA)**, delivering diverse graphic design projects.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding">
+            <h2>Contact Me</h2>
+            <div class="contact-content">
+                <p>Feel free to reach out for collaborations, inquiries, or just to say hello!</p>
+                <p>You can email me directly at: <a href="mailto:creativedaviee@gmail.com" class="contact-email-link">creativedaviee@gmail.com</a></p>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CreativeDavie's Portfolio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
